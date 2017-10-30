@@ -1,10 +1,10 @@
 $(function() {
 	var bt = new baothink();
 	bt.config.url.namespace = "workflow/processing/";
-	bt.config.toolbar.search = "查询";// 右上角搜索框的提示语句
+	bt.config.toolbar.search = "流程定义ID/流程定义名称";// 右上角搜索框的提示语句
 	bt.config.datatables.pageLength = 10; // 每页记录数，默认10
 	bt.config.datatables.paging = true;// 是否分页，默认true
-	bt.config.visible.searchbar = false;//关闭查询框
+//	bt.config.visible.searchbar = false;//关闭查询框
 	/*bt.config.datatables.fixedParam = {
 			keyword : function() {
 			return keyword;

@@ -20,7 +20,6 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.NativeProcessInstanceQuery;
 import org.activiti.engine.runtime.ProcessInstance;
-import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,11 +78,13 @@ public class ProcessRuningController {
 	@ResponseBody
     public PageResult running(PageRequest pageRequest, HttpSession session) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("select * from "+ managementService.getTableName(ProcessInstance.class) + " where 1=1");
+		sql.append("select DISTINCT RES.*, p.KEY_ AS ProcessDefinitionKey, p.ID_ ProcessDefinitionId, p.NAME_ ProcessDefinitionName, p.VERSION_ ProcessDefinitionVersion, p.DEPLOYMENT_ID_ DeploymentId");
+		sql.append(" from "+ managementService.getTableName(ProcessInstance.class)+" RES");
+		sql.append(" INNER JOIN ACT_RE_PROCDEF P ON RES.PROC_DEF_ID_ = P.ID_ WHERE	RES.PARENT_ID_ IS NULL");
 		Map<String, String> map = pageRequest.getSearch();
 		String value = map.get("value");
 		if(!StringUtil.isEmpty(value)){
-			sql.append(" and ");
+			sql.append(" and (p.KEY_ like '%" + value +"%' or p.NAME_  like '%" + value + "%')"  );
 		}
 		NativeProcessInstanceQuery processInstanceQuery = runtimeService.createNativeProcessInstanceQuery();
 		int count = processInstanceQuery.sql(sql.toString()).list().size();
