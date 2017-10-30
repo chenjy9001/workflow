@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context.xsd
+							http://www.springframework.org/schema/mvc
+							http://www.springframework.org/schema/mvc/spring-mvc.xsd
+							http://www.springframework.org/schema/aop
+							http://www.springframework.org/schema/aop/spring-aop.xsd
+							http://www.springframework.org/schema/task
+							http://www.springframework.org/schema/task/spring-task.xsd">
+	<!-- import -->
+	<import resource="*/profile-com-*.xml" />
+	<import resource="spring-mybatis.xml" />
+	<import resource="activiti-context.xml" />
+	<!-- 定时器注解配置 task任务扫描注解 -->
+	<!-- <task:annotation-driven /> -->
+	<!-- 定时器注解配置扫描位置 -->
+	
+	<!-- 项目公共配置文件 -->
+	<bean id="projectConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations" value="classpath:config.properties" />
+		<!-- 设置编码格式 -->
+		<property name="fileEncoding" value="UTF-8"></property>
+	</bean>
+	<!-- httpClient配置文件 -->
+	<bean id="httpClientConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations" value="classpath:httpclient.properties" />
+		<!-- 设置编码格式 -->
+		<property name="fileEncoding" value="UTF-8"></property>
+	</bean>
+	
+	<!-- 集成REST服务需要的bean -->
+    <bean id="restResponseFactory" class="org.activiti.rest.service.api.RestResponseFactory" />
+    <bean id="contentTypeResolver" class="org.activiti.rest.common.application.DefaultContentTypeResolver" />
+</beans>
+
+
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans profile="development" xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context.xsd
+							http://www.springframework.org/schema/mvc
+							http://www.springframework.org/schema/mvc/spring-mvc.xsd
+							http://www.springframework.org/schema/aop
+							http://www.springframework.org/schema/aop/spring-aop.xsd
+							http://www.springframework.org/schema/task
+							http://www.springframework.org/schema/task/spring-task.xsd">
+	<!--配置拦截器, 多个拦截器,顺序执行 -->
+	<mvc:interceptors>
+		<!-- 获取登陆人信息拦截器 by huozc 2017年6月1日09:14:20 -->
+		<!-- <mvc:interceptor>
+			<mvc:mapping path="/**/*index.html" />
+			<bean id="baseLoginUserInterceptor" class="com.baothink.ecp.base.wechat.interceptor.BaseLoginUserInterceptor"></bean>
+		</mvc:interceptor> -->
+		<!-- 首页请求拦截器，过滤购物车和配置订单只有登录后才能访问 add by 陈敬尧 2016-9-30 11:47:11 -->
+		<!-- <mvc:interceptor>
+			<mvc:mapping path="/" />  
+			<mvc:mapping path="/**/*.html" />
+			<mvc:mapping path="/**/*.action" />
+			<bean id="wyipCallUrlInterceptor" class="com.baothink.ecp.wyip.web.site.interceptor.CallUrlInterceptor">
+				<property name="loginPath">  
+                    <value>login.html</value>  
+                </property> 
+                <property name="mcPath">  
+                    <value>mc/index.html</value>  
+                </property> 
+                <property name="lmcPath">  
+                    <value>lmc/index.html</value>  
+                </property> 
+			</bean>
+		</mvc:interceptor> -->
+		<!-- 商城，购物车，配置订单判断用户是否被冻结 -->
+	 <!-- <mvc:interceptor>
+			<mvc:mapping path="/**/*.htm" />
+			<mvc:exclude-mapping path="/*mc/**" />不拦截有mc的url
+			<bean id="userFreeInterceptor" class="com.baothink.ecp.wyip.web.site.interceptor.UserFreeInterceptor"></bean>
+		</mvc:interceptor> -->
+		<mvc:interceptor>
+	    <mvc:mapping path="/**"/>
+		    <bean class="com.baothink.framework.core.interceptor.TokenHandlerInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+</beans>

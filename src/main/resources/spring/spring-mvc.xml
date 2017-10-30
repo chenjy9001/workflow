@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context.xsd
+							http://www.springframework.org/schema/mvc
+							http://www.springframework.org/schema/mvc/spring-mvc.xsd
+							http://www.springframework.org/schema/aop
+							http://www.springframework.org/schema/aop/spring-aop.xsd
+							http://www.springframework.org/schema/task
+							http://www.springframework.org/schema/task/spring-task.xsd
+							http://www.springframework.org/schema/tx
+							http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			<!-- 配置Fastjson支持 -->
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=utf-8</value>
+						<value>application/json;charset=utf-8</value>
+					</list>
+				</property>
+				<!-- <property name="fastJsonConfig.features"> <list> <value>SortFeidFastMatch</value> </list> </property> -->
+				<property name="fastJsonConfig.serializerFeatures">
+					<list>
+						<value>DisableCheckSpecialChar</value>
+						<value>DisableCircularReferenceDetect</value>
+						<!-- 输出key时是否使用双引号,默认为true -->
+						<value>QuoteFieldNames</value>
+						<!-- 是否输出值为null的字段,默认为false -->
+						<value>WriteMapNullValue</value>
+						<!-- 数值字段如果为null,输出为0,而非null -->
+						<value>WriteNullListAsEmpty</value>
+						<!-- 字符类型字段如果为null,输出为"",而非null -->
+						<value>WriteNullStringAsEmpty</value>
+						<!-- Boolean字段如果为null,输出为false,而非null -->
+						<value>WriteNullBooleanAsFalse</value>
+						<!-- <value>BeanToArray</value> -->
+					</list>
+				</property>
+			</bean>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+	<context:component-scan base-package="com.baothink">
+		<!-- 这里只扫描Controller
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController" /> <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" /> <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" /> -->
+	</context:component-scan> 
+	
+
+
+	<!-- <context:annotation-config /> -->
+	<!-- 启动对@AspectJ注解的支持 -->
+	<!-- proxy-target-class等于true是强制使用cglib代理，proxy-target-class默认是false，如果你的类实现了接口 就走JDK代理，如果没有，走cglib代理 -->
+	<!-- 注：对于单利模式建议使用cglib代理，虽然JDK动态代理比cglib代理速度快，但性能不如cglib -->
+
+	<!--如果不写proxy-target-class="true"这句话也没问题 -->
+	<!-- <aop:aspectj-autoproxy /> -->
+
+	<!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 默认编码 -->
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 文件大小最大值 -->
+		<property name="maxUploadSize" value="10485760000" />
+		<!-- 内存中的最大值 -->
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+
+	<!-- 控制器异常处理 -->
+	<bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
+	</bean>
+
+	<!-- 静态资源的访问 -->
+	<mvc:resources mapping="/base/css/**" location="/common/base/css/" />
+	<mvc:resources mapping="/base/images/**" location="/common/base/images/" />
+	<mvc:resources mapping="/base/js/**" location="/common/base/js/" />
+	<mvc:resources mapping="/bootstrap/**" location="/common/bootstrap/" />
+	<mvc:resources mapping="/fonts/**" location="/common/fonts/" />
+	<mvc:resources mapping="/jquery/**" location="/common/jquery/" />
+	<mvc:resources mapping="/form/**" location="/common/form/" />
+	<mvc:resources mapping="/plugins/**" location="/common/plugins/" />
+
+	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
+	<mvc:default-servlet-handler />
+
+	<!-- transaction support -->
+	<!-- PlatformTransactionMnager -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- enable transaction annotation support -->
+	<tx:annotation-driven transaction-manager="txManager" />
+	
+	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<!-- 国际化配置 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	    <property name="basenames">
+	        <list>
+	            <value>classpath:message</value>
+	        </list>
+	    </property>
+	    <property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	    <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+	    <!-- 这里配置将使用上面国际化配置的messageSource -->
+	    <property name="validationMessageSource" ref="messageSource" />
+	</bean>
+	<import resource="*/profile-mvc*.xml" />
+	<import resource="*/profile-quartz-*.xml" />
+	
+	<context:property-placeholder file-encoding="UTF-8" location="classpath:config.properties"/>  
+	
+	<!-- <bean id="activitiTable" class="com.baothink.workflow.activiti.ActivitiTable" init-method="createTable_2" /> -->
+	
+	
+</beans>

@@ -1,0 +1,21 @@
+<included>
+
+	<appender name="accessFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logdir}/logs/${logback.nodeid}/${logback.project}/accessFile/${dateFormat}.txt</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logdir}/logs/${logback.nodeid}/${logback.project}/accessFile/%d{yyyy-MM-dd}.%i.zip
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>10MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<!-- <layout class="ch.qos.logback.classic.html.HTMLLayout"> <pattern>%不能写中文，需要转码%thread%mdc%level%logger%msg</pattern> </layout> -->
+			<!-- <pattern>%h %l %u [%t] "%r" %s %b "%i{Referer}" "%i{User-Agent}"</pattern> -->
+			<pattern>%h %l %u [%t] "%r" %s %b "%i{Referer}" "%i{User-Agent}"</pattern>
+			<immediateFlush>true</immediateFlush>
+		</encoder>
+	</appender>
+
+</included>

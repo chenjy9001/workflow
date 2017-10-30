@@ -1,0 +1,10 @@
+#jstree_panel{float:left;width:15%;height:100%;background-color: #FFF;overflow: auto;}
+#menu_panel{float:right;width:85%;}
+#menufunc_panel{float:right;width:85%;}
+.ibox-content #search_keyword_func {
+    height: auto;
+    margin: 0 -5px 0 0;
+    vertical-align: top;
+    width: auto;
+}
+table{font-size:13px;}

@@ -1,0 +1,17 @@
+<!-- 文件上传,删除记录 -->
+
+<appender name="fileoper" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<file>${logdir}/logs/${logback.nodeid}/${logback.project}/fileoper/${dateFormat}.txt</file>
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>${logdir}/logs/${logback.nodeid}/${logback.project}/fileoper/%d{yyyy-MM-dd}.%i.zip
+		</fileNamePattern>
+		<maxHistory>30</maxHistory>
+		<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+			<MaxFileSize>10MB</MaxFileSize>
+		</TimeBasedFileNamingAndTriggeringPolicy>
+	</rollingPolicy>
+	<encoder>
+		<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n%ex</pattern>
+		<immediateFlush>false</immediateFlush>
+	</encoder>
+</appender>

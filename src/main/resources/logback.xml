@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property resource="resource/logback/logback-variables.properties" />
+	<!-- tomcat安装目录 -->
+	<property name="logdir" value="${catalina.base}" />
+	<if condition='property("logback.mode").contains("development")'>
+		<then>
+			<!-- 是否不缓存日志 -->
+			<property name="immediateFlush" value="true" />
+		</then>
+	</if>
+	<if condition='!property("logback.mode").contains("development")'>
+		<then>
+			<!-- 是否不缓存日志 -->
+			<property name="immediateFlush" value="false" />
+		</then>
+	</if>
+
+	<timestamp key="dateFormat" datePattern="yyyyMMdd'T'HH" />
+
+	<!-- 控制台输出日志 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 过滤监控日志的输出 -->
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+			<evaluator>
+				<expression>event.getLoggerName().contains("com.baothink.ecp.base.log.")</expression>
+			</evaluator>
+			<OnMismatch>NEUTRAL</OnMismatch>
+			<OnMatch>DENY</OnMatch>
+		</filter>
+		<encoder>
+			<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}:%line - %msg%n%ex</Pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<!-- 执行器处理 -->
+	<!-- <include resource="resource/logback/jobLog.xml" /> -->
+
+	<!-- 文件处理 -->
+	<include resource="resource/logback/fileoper.xml" />
+	<!-- 错误处理 -->
+	<include resource="resource/logback/error.xml" />
+
+	<!-- 条件判断 -->
+	<if condition='property("logback.mode").contains("development")'>
+		<then>
+			<include resource="resource/logback/sqlOutFile.xml" />
+		</then>
+	</if>
+
+	<!-- 访问日志 -->
+	<if condition='property("logback.access").contains("true")'>
+		<then>
+			<include resource="resource/logback/access.xml" />
+		</then>
+	</if>
+
+</configuration>

@@ -1,0 +1,155 @@
+/*公共*/
+form .col-xs-1,form  .col-xs-10,form  .col-xs-11,form .col-xs-12,form .col-xs-2,form .col-xs-3,form .col-xs-4,form .col-xs-5,form .col-xs-6,form .col-xs-7,form .col-xs-8,form .col-xs-9
+{position: inherit;}
+.control-label{word-break: keep-all;white-space:nowrap;}
+/*table修改标记*/
+.b-dirty{position: absolute;width: 0;height: 0;border-style: solid;border-width: 3px;border-color: red transparent transparent red;margin: -6px 0 0 -5px;padding: 0;overflow: hidden;vertical-align: top;}
+
+/*layer样式*/
+.layui-layer{border: 1px solid #B2B2B2;}
+.layui-layer-page .layui-layer-content{padding:10px;overflow-x:hidden !important;}
+.layui-layer-shade{background: #999 !important;}
+/*layer弹出框*/
+.layui-layer-dialog{width: auto !important;max-width: 1200px;}
+.layui-layer-dialog .layui-layer-content{min-height: 50px;}
+
+/* form表单 start */
+.form-control{height:30px;font-size: 13px;}
+div.form-control{min-height:30px;height:auto;}
+a.form-control{border: none;color: #337ab7;}
+/* .form-control[readonly]{background-color: white;} */ 
+span.form-control{background: #eee;} 
+.input-lg{height: 46px;}
+.input-sm{height: 30px;}
+.form-horizontal .control-label{padding-left: 0;padding-right:0; text-align: right;}
+
+label.new:after{content:"new";color: red;position: absolute;margin-top:-10px;margin-left:-10px;font-size:12px;}
+label.required:before,td.required:before{content: "*";color: red;vertical-align: middle;margin-right:2px;}
+
+
+/*日期选择器的样式*/   
+div.datetimepicker table{font-size: 14px;}
+div.daterangepicker table{font-size: 14px !important;}
+div.daterangepicker .calendar th, div.daterangepicker .calendar td{min-width: inherit !important;}
+.daterangepicker select.yearselect{width: auto;}
+@media (min-width: 564px){
+.daterangepicker.ltr .calendar.left{clear: none;}
+}
+div.datetimepicker-minutes table {width: 470px;}
+div.datetimepicker-minutes table tr td span{width: 42px;margin:1.8px;}
+
+/* checkbox,radio */
+.icheckbox_minimal-blue,.iradio_minimal-blue{background-color: white;}
+form .icheckbox_minimal-blue,form .iradio_minimal-blue{margin-top:8px;}
+form .iradio_minimal-blue{border-radius:10px;}
+form .iradio_minimal-blue+label[for],form .icheckbox_minimal-blue+label[for]{margin:8px 10px 0px 5px ;font-weight: normal;vertical-align: middle;cursor: pointer;}
+
+/* 富文本编辑器 */
+#edui-container{width: auto !important;}
+/* 下拉框 */
+.select2{width: 100% !important;}
+.select2-container--default .select2-selection--single{border-color: #e5e6e7; border-radius: 1px;height: 30px;line-height: 30px;}
+.select2-container--default .select2-selection--single .select2-selection__arrow{top:5px;}
+.select2-selection__rendered{display: block !important;}
+.select2-search--inline{float: inherit !important;}
+.select2-search__field{width: 100% !important;}
+.select2-results {}
+.select2-results table {table-layout: fixed;}
+.select2-results table.fixTbHead {background: white; margin-bottom: -1px;}
+.select2-results table thead div {white-space: nowrap;}
+.select2-results__options {overflow-x: hidden;}
+.select2-results__options table {margin: 0px;}
+.select2-results__options table thead th {padding-top: 0px !important; padding-bottom: 0px !important;}
+.select2-results__options table thead div {white-space: nowrap;overflow: hidden; height: 0px;}
+.select2-results__options table tbody tr td{font-size: 13px;white-space: nowrap;overflow: hidden;}
+.select2-container--open .select2-dropdown--above, .select2-container--open .select2-dropdown--below {border: 1px solid #5897fb !important; margin-top: -1px;}
+.select2-container--classic .select2-selection--single, .select2-container--classic .select2-selection--multiple {background-image: none; background: white; height: 30px; border: 1px solid #e5e6e7; border-radius: 1px; color: inherit;}
+.select2-container--classic .select2-selection--single .select2-selection__rendered {height: 30px; line-height: 30px;}
+.select2-container--classic .select2-selection--single .select2-selection__arrow, .select2-container .select2-search--inline .select2-search__field {height: 28px; background-image: none; background-color: white; border-left: none; margin: 0;}
+
+/*上传控件*/
+.fileinput-button input{font-size: inherit;width: 100%;height: 100%;}
+
+/* 提示框样式 */
+.fileinput-button{overflow: inherit;}
+.bt-error{z-index: 19891016;position: absolute !important;left:auto !important;top:auto !important;margin-top:5px !important;}
+.bt-error .layui-layer-content{line-height:normal !important;background-color: rgb(204, 89, 101) !important;overflow:initial !important;height: 25px !important;}
+.bt-error .layui-layer-content i{border-right-color: rgb(204, 89, 101) !important;top: -6px !important;}
+/* .bt-error{z-index: 19891016;position: absolute !important;left:auto !important;right:18px !important;top:3px !important;}
+.bt-error .layui-layer-content{line-height:normal !important;background-color: rgb(204, 89, 101) !important;overflow:hidden !important;height: 25px !important;}
+.bt-error .layui-layer-content i{border-right-color: rgb(204, 89, 101) !important;} */
+
+/*省市区选择器*/
+.city-picker-span{height:30px;width:100% !important; font-size: 13px;border: 1px solid #e5e6e7 !important;background-image: none;overflow:hidden;}
+
+/* form 表单 end */
+
+
+/*聊天*/
+#small-chat{display: none !important;}
+
+/* datatables的布局样式 */
+.ibox-content{border: none;}
+.dataTables_scrollHead  thead th{padding:5px 8px !important;word-break: keep-all;}
+table.table th{text-align: center;word-break: keep-all;}
+table.table tbody tr:HOVER{background: #CCEEFF;}
+table.table tbody tr.selected/* ,table tbody td.sorting_1 */{background: #3399FF !important;color: white !important;}
+table.table tbody tr td{padding:5px !important;word-break: keep-all;}
+table.table tbody .text-center{text-align: center;}
+.dataTables_processing{z-index: 1;}
+.dataTables_scrollHead{border-right: 1px solid #ddd;}
+.dataTables_wrapper .pageleft{line-height:35px;}
+.dataTables_wrapper .pageleft>div{float: left;margin-right:10px;padding:0px !important;}
+.dataTables_wrapper .pageToolbar{margin-left: -15px;margin-right:-15px;}
+
+/*工具栏按钮栏*/
+.toolbarBtn{float:left; display: inline-block;vertical-align: middle;}
+.toolbarBtn .iconfont{font-size: inherit;}
+/*模糊搜索**/
+#search_keyword{margin:0px;margin-right:-1px;width: auto;vertical-align: top;}
+/*精准搜索*/
+#div-advanced-search{width: 100%} 
+#div-advanced-search .well{margin:10px 0 0 0;padding:10px;vertical-align: middle;}
+#div-advanced-search .form-group{margin:0px;}
+#div-advanced-search .form-group+.form-group{margin-top:10px;}
+#div-advanced-search .form-group label{padding-left:0;padding-right:0;}
+#div-advanced-search .form-group div{padding-left:0;padding-right:0;}
+
+/* datatables固定模式的样式 */
+.wrapper_fixed{padding:10px; padding-bottom:5px;background: white;overflow: hidden;}
+.wrapper_fixed,.wrapper_fixed .ibox,.wrapper_fixed .ibox .ibox-content {height: 100%;}
+.wrapper_fixed .ibox-content{padding: 0;}
+.wrapper_fixed .ibox-content .row .col-xs-12{position: inherit;}
+.wrapper_fixed .pageToolbar_fixed{position:fixed;vertical-align:bottom; bottom:0px;padding-top:5px;background: white;margin:0 auto;}
+.wrapper_fixed .dataTables_scrollBody_bottom_line{border-bottom: 1px solid #EBEBEB;}
+
+.wrapper_tab{height: 100%;}
+.tab-pane{height: 100%;overflow: hidden; }
+.tab-pane iframe {}
+.nav-tabs {padding-top:1px;padding-left:1px;}
+.nav-tabs li.active a{color: #337ab7; background-color: white !important;border-bottom: 1px solid white;}
+.nav-tabs li a{padding:6px 15px;color: #777;font-weight: normal;}
+
+/*树搜索*/
+.wrapper_tree .ibox-content{margin:0;padding:0;position: relative;border: none;}
+.wrapper_tree .ibox-content .tree{position:relative; height: 100%;padding-left:0 !important;padding-right:0 !important; overflow:hidden;}
+.wrapper_tree .ibox-content .tree>div{border: 1px solid #EBEBEB;height:100%;overflow: auto;}
+.wrapper_tree .ibox-content .tree .tree_search{position:absolute; margin-left:-1px;margin-top:-1px;}
+.wrapper_tree .ibox-content .tree #jstree{margin-top: 40px}
+.wrapper_tree .ibox-content .datatable{height:100%;padding: 0 !important;margin-right:-6px;}
+.wrapper_tree .ibox-content .datatable>div{}
+.wrapper_tree .ibox-content .row{margin:0 !important;}
+
+/*主子表*/
+.wrapper div.main{position: relative;}
+.wrapper div.main .pageToolbar{position: absolute;}
+.wrapper div.sub{position: relative;background: #F3F3F4;}
+.wrapper div.sub .tab-content{border: 1px solid #DDD;border-top:0;}
+/*可拖动分隔条*/
+.splitbarV {float:left;width:6px;height:100%;line-height:0px;font-size:0px;#background:#cbe1fb;}
+.splitbarH {height:6px;text-align:left;line-height:0px;font-size:0px;border-top:solid 1px #9cbdff;border-bottom:solid 1px #9cbdff;background:#cbe1fb;}
+.splitbuttonV{margin-top:-30px;top:50%;position:relative;height:60px;width:6px;background:#cbe1fb;}
+.splitbuttonV.invert{margin-left:0px;background:#cbe1fb;}
+.splitbuttonH{margin-left:-41px;left:50%;position:relative;height:10px !important;width:83px;background:transparent;}
+.splitbuttonH.invert{margin-top:-4px;background:transparent;}
+.splitbarV.working,.splitbarH.working,.splitbuttonV.working,.splitbuttonH.working{ -moz-opacity:.50; filter:alpha(opacity=50); opacity:.50;background: #cbe1fb;} 

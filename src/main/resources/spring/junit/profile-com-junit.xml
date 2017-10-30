@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd" default-lazy-init="true">
+	<beans profile="junit">
+		<!-- 项目公共配置文件 -->
+		<bean id="projectConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+			<property name="locations" value="file:../ecp-wyip-web-admin/src/main/resources/config.properties" />
+			<!-- 设置编码格式 -->
+			<property name="fileEncoding" value="UTF-8"></property>
+		</bean>
+		<!-- 数据库连接及连接池配置文件 -->
+		<bean id="propertyConfigurer" class="com.baothink.framework.core.config.DataSourceEncryptPropertiesConfigurer">
+			<property name="location" value="file:../ecp-wyip-web-admin/src/main/resources/spring/junit/db.junit.properties" />
+		</bean>
+		<!-- 异常错误代码对应的中文描述配置文件 -->
+		<bean id="errorMessage" class="com.baothink.framework.core.config.ErrorMessagePropertiesConfigurer">
+			<property name="locations">
+				<list>
+					<value>classpath*:error.message.properties</value>
+					<value>file:../ecp-wyip-web-admin/src/main/resources/error.message.properties</value>
+				</list>
+			</property>
+			<!-- 设置编码格式 -->
+			<property name="fileEncoding" value="UTF-8"></property>
+		</bean>
+		<!-- 创建SqlSessionFactory，同时指定数据源 -->
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="configLocation" value="file:../ecp-wyip-web-admin/src/main/resources/mybatis-config.xml" />
+			<!-- 自动扫描mapping.xml文件 -->
+			<property name="mapperLocations" value="classpath*:com/baothink/**/mapping/**/*Mapper.xml"></property>
+		</bean>
+	</beans>
+</beans>

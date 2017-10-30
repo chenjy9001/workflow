@@ -1,0 +1,30 @@
+<included>
+	<appender name="errorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logdir}/logs/${logback.nodeid}/${logback.project}/error/${dateFormat}.txt</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logdir}/logs/${logback.nodeid}/${logback.project}/error/%d{yyyy-MM-dd}.%i.zip
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>10MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger:%line - %msg%n%ex</pattern>
+			<immediateFlush>${immediateFlush}</immediateFlush>
+		</encoder>
+	</appender>
+
+	<logger name="com" level="WARN">
+		<appender-ref ref="errorFile" />
+	</logger>
+	<logger name="org" level="WARN">
+		<appender-ref ref="errorFile" />
+	</logger>
+
+	<!-- 第三方日志,只输出错误日志
+	<logger name="org.springframework." level="WARN">
+		<appender-ref ref="errorfile" />
+	</logger> -->
+	
+</included>

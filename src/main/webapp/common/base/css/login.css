@@ -1,0 +1,27 @@
+@media \0screen\,screen\9 {/* 只支持IE6、7、8 */
+  #loginbox form{
+    background-color:#000000;
+    filter:Alpha(opacity=50);
+    position:static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+    *zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+  } 
+}
+body {padding: 0;margin-top:0px;margin: 0px;background:url("../../common/base/images/login/bg.jpg") no-repeat; } 
+#loginbox {width:500px;text-align: center;  position: relative;position: absolute;top:50%;left:50%;margin-left:-250px;margin-top:-180px;}
+#loginbox form{width:100%;padding-top:20px; background-color:rgba(0,0,0,0.5); }
+#loginbox .form-actions { padding: 14px 20px 15px;margin-top:20px;}
+#loginbox .icon_pt_user{padding-left:40px;background:#27a9e3 url(../images/login/pt_user.png) 5px center no-repeat;}
+#loginbox .icon_user{padding-left:40px;background:#28b779 url(../images/login/user.png) 5px center no-repeat;}
+#loginbox .icon_psd{padding-left:40px;background:#ffb848 url(../images/login/psd.png) 5px center no-repeat;}
+#loginbox .icon_code{padding-left:40px;background:#ff8080 url(../images/login/code.png) 5px center no-repeat;}
+#loginbox .main_input_box {font-size:14px;display: inline-block;}
+#loginbox .main_input_box .add-on{  *line-height:31px; color:#fff;  width:30px; display:inline-block;}
+#loginbox .main_input_box input{height:40px; border:0px;padding-left:5px; display:inline-block; width:350px; line-height:28px;}
+#loginbox .main_input_box input.login_code{width:243px;}
+#loginbox .main_input_box .code-div{display: inline-block;vertical-align: top}
+#loginbox .main_input_box .image-div{display: inline-block;vertical-align: top;top: 0}
+#loginbox .main_input_box .image-div img{width:100px;height: 40px;}
+#loginbox .control-group{ padding:10px 0; margin-bottom:0px;}
+#loginbox .bottomDiv{position: fixed;bottom:0;left:0;width:100%; }
+.form-vertical, .form-actions { border-top:1px solid #3f4954; }
+

@@ -1,0 +1,82 @@
+/*公共*/
+body {font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; color: #676a6c; overflow-x: hidden}
+body, body.full-height-layout #page-wrapper, body.full-height-layout #wrapper, html {height: 100%;}
+.clear {clear: both; display: block; overflow: hidden;}
+.navbar {border: 0}
+#page-wrapper {min-height: auto;min-width: 900px;}
+body.boxed-layout {background: url(patterns/shattered.png)}
+body.boxed-layout #wrapper {background-color: #2f4050; max-width: 1200px; margin: 0 auto}
+.pace-done #page-wrapper, .pace-done .footer, .pace-done .nav-header, .pace-done .navbar-static-side, .pace-done li.active {-webkit-transition: all .5s; transition: all .5s}
+.label {background-color: #d1dade; color: #5e5e5e; font-size: 10px; font-weight: 600; padding: 3px 8px; text-shadow: none}
+.badge {background-color: #d1dade; color: #5e5e5e; font-size: 11px; font-weight: 600; padding-bottom: 4px; padding-left: 6px; padding-right: 6px; text-shadow: none}
+.badge-warning, .label-warning {background-color: #f8ac59; color: #FFF}
+.badge-primary, .label-primary {background-color: #1ab394; color: #FFF}
+.badge-success, .label-success {background-color: #1c84c6; color: #FFF}
+.badge-warning-light, .label-warning-light {background-color: #f8ac59; color: #fff}
+.badge-danger, .label-danger {background-color: #ed5565; color: #FFF}
+.badge-info, .label-info {background-color: #23c6c8; color: #FFF}
+.badge-inverse, .label-inverse {background-color: #262626; color: #FFF}
+.badge-white, .label-white {background-color: #FFF; color: #5E5E5E}
+.badge-disable, .label-white {background-color: #2A2E36; color: #8B91A0} 
+/*表单输入框*/
+.form-control, .single-line {background-color: #FFF; background-image: none; border: 1px solid #e5e6e7; border-radius: 1px; color: inherit; display: inline-block; padding: 5px 12px; -webkit-transition: border-color .15s ease-in-out 0s, box-shadow .15s ease-in-out 0s; transition: border-color .15s ease-in-out 0s, box-shadow .15s ease-in-out 0s; width: auto; font-size: 14px; width: 100%;}
+.form-control:focus, .single-line:focus {border-color: #1ab394 !important}
+
+/*导航栏*/
+.navbar{min-width: 950px;white-space:nowrap;height: 50px;}
+.navbar-header {/* width: 60% */float: left; width: 220px;height:50px; text-align: center;}
+.navbar-header img{height:100%;} 
+.navbar-fixed-top {-webkit-transition-duration: .5s; transition-duration: .5s; z-index: 2030}
+.navbar-fixed-top, .navbar-static-top {background: #f3f3f4}
+.navbar-default {background-color: transparent; border-color: #2f4050; position: relative}
+.navbar-top-links li {display: inline-block}
+.navbar-top-links li:last-child {padding-right: 10px}
+.navbar-top-links .user:HOVER {}
+.navbar-top-links .user-photo {margin: -4px 8px 0 0; border-radius: 100%; border: 2px solid #FFF; width: 40px !important;height:40px !important;}
+.navbar-top-links .user-info {color: white; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; vertical-align: top; line-height: 15px; position: relative; top: 15px;}
+.navbar-top-links .user-info small {display: block;font-size: 12px;margin-top:3px;}
+.navbar-top-links .user i {color: white;}
+
+.nav.navbar-right>li>a {color: #999c9e}
+.nav.navbar-top-links a {font-size: 14px}
+.nav>li>a {display: block; color: #a7b1c2; font-weight: 600; padding: 14px 20px 14px 25px}
+.nav>li>a i {margin-right: 6px}
+.nav>li.active>a {color: #fff}
+.nav>li.active {/* border-left: 4px solid #19aa8d;  background: #293846 */}
+.nav-pills {height: 50px; margin:0 10px;}
+.navbar-left{display: inline-block;}
+.navbar-right{display: inline-block;float: right;}
+.navbar-top-links li a {padding: 15px 10px;margin: 0;}
+.nav-pills li a {padding: 0px 10px; line-height: 50px; min-height: 50px; color: #666;border-radius: 0px;}
+.nav-pills li a:HOVER {color: white; background-color: #337ab7;}
+.nav-second-level li a {padding: 7px 15px 7px 10px; padding-left: 52px}
+.count-info .label {line-height: 12px; padding: 1px 5px; position: absolute; right: 6px; top: 5px}
+.navbar-top-links .user { height: 50px; margin: 0; padding: 0; min-height: auto; color: #FFF; display: block; line-height: 50px; text-align: center;width: auto; min-width: 50px; padding: 0 8px; position: relative; background-color: #62a8d1 !important;}
+.navbar-top-links .user-info {color: white;display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; vertical-align: top; line-height: 15px; position: relative; top: 10px;}
+/*导航栏下面部分*/
+.fixed-nav #wrapper {padding-top: 50px; box-sizing: border-box}
+/*标签栏*/
+.content-tabs {position: relative;height: 37px;background: #fafafa;line-height: 35px;border-bottom: solid 2px #2f4050}
+.content-tabs .roll-nav, .page-tabs-list {position: absolute;width: 35px;height: 35px;text-align: center;color: #999;z-index: 2;top: 0}
+.content-tabs .roll-left {left: 0;border-right: solid 1px #eee}
+.content-tabs .roll-right {right: 0;border-left: solid 1px #eee}
+.content-tabs button {background: #fff;border: 0;height: 35px;width: 35px;outline: 0}
+.content-tabs button:hover {background: #fafafa}
+nav.page-tabs {margin-left: 35px;width: 100000px;height: 35px;overflow: hidden}
+nav.page-tabs .page-tabs-content {float: left}
+.page-tabs a {display: block;float: left;border-right: solid 1px #eee;padding:0 15px}
+.page-tabs a.active {background: #2f4050; color: #a7b1c2}
+.page-tabs a i:hover {color: #c00}
+.content-tabs .roll-nav:hover, .page-tabs a:hover {color: #777;background: #f2f2f2;cursor: pointer}
+.roll-right.J_tabRight {right: 80px}
+.roll-right.btn-group {right: 0px;width: 80px;padding: 0}
+.roll-right.btn-group button {width: 80px}
+.roll-right.J_tabExit {background: #fff;height: 35px;width: 60px;outline: 0}
+
+#content-main {height: calc(100% - 140px); overflow: hidden}
+.fixed-nav #content-main {height: calc(100% - 70px); overflow: hidden}
+
+/*底部*/
+.footer {background: none repeat scroll 0 0 #fff; border-top: 1px solid #e7eaec; overflow: hidden; padding: 5px 20px; margin: 0 -15px;}
+.footer.fixed_full {position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; padding: 10px 20px; background: #fff; border-top: 1px solid #e7eaec}
+.footer.fixed {position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; padding: 10px 20px; background: #fff; border-top: 1px solid #e7eaec; margin-left: 220px}
