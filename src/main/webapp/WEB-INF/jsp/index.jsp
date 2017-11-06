@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>后台管理平台</title>
+<title>工作流管理平台</title>
 <c:import url="common/head.jsp" />
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg fixed-nav" style="overflow: hidden">

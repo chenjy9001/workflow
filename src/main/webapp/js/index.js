@@ -70,16 +70,28 @@ function initTwoLevelMenu(menuCode) {
 	var html = '<ul class="nav" id="side-menu">';
 	html = html + "<li>";
 	html = html + "<a href='#'>";
-	html = html + "   <i class='fa'></i><span class='nav-label'>模板管理</span><span class='fa arrow'></span>";
+	html = html + "   <i class='fa'></i><span class='nav-label'>工作流管理</span><span class='fa arrow'></span>";
 	html = html + " </a>";
 	html = html + "<ul class='nav nav-second-level'>";
 	html = html + "<li><a class='J_menuItem' href ='workflow/model/list' dataindex='1'>模板管理</a></li>";
 	html = html + "<li><a class='J_menuItem' href ='workflow/process/toContent.html' dataindex='2'>流程管理</a></li>";
 	html = html + "<li><a class='J_menuItem' href ='workflow/processing/toContent.html' dataindex='3'>流程实例管理</a></li>";
-	html = html + "<li><a class='J_menuItem' href ='workflow/task/taskList.html' dataindex='3'>流程任务管理</a></li>";
-	html = html + "<li><a class='J_menuItem' href ='workflow/user/toContent.html' dataindex='3'>用户管理</a></li>";
+	html = html + "<li><a class='J_menuItem' href ='workflow/task/taskList.html' dataindex='4'>流程任务管理</a></li>";
+	html = html + "<li><a class='J_menuItem' href ='workflow/user/toContent.html' dataindex='5'>用户管理</a></li>";
+	html = html + "<li><a class='J_menuItem' href ='workflow/group/toContent.html' dataindex='6'>群组管理</a></li>";
 	html = html + "</ul>";
-	html = html + "</li></ul>";
+	html = html + "</li>";
+	html = html + "<li>";
+	html = html + "<a href='#'>";
+	html = html + "   <i class='fa'></i><span class='nav-label'>接口管理</span><span class='fa arrow'></span>";
+	html = html + " </a>";
+	html = html + "<ul class='nav nav-second-level'>";
+	html = html + "<li><a class='J_menuItem' href ='si/siInterLog/manage.html' dataindex='1'>接口日志</a></li>";
+	html = html + "<li><a class='J_menuItem' href ='si/siUser/manage.html' dataindex='2'>接口账号管理</a></li>";
+	html = html + "<li><a class='J_menuItem' href ='si/siInterDefine/manage.html' dataindex='3'>接口配置管理</a></li>";
+	html = html + "</ul>";
+	html = html + "</li>";
+	html = html + "</ul>";
 	return html;
 	
 }

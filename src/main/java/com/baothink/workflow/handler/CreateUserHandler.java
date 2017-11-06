@@ -34,10 +34,11 @@ import com.baothink.interfaces.core.SIRequestParam;
 import com.baothink.interfaces.core.SIResponseResult;
 import com.baothink.interfaces.core.exception.BaothinkIntefaceCoreException;
 import com.baothink.workflow.AcResponseResult;
+import com.baothink.workflow.common.InterfaceErrorCode;
 import com.baothink.workflow.dto.UserDto;
 
 /**
- * TODO<一句话功能描述><br>
+ * 新增用户接口<br>
  * <br>
  * @author 陈敬尧
  * @version 1.0,2017年10月26日 上午10:05:58
@@ -109,33 +110,45 @@ public class CreateUserHandler implements IHandle{
 	 */
 	@Override
 	public SIResponseResult handle(SIRequestParam param) throws BaothinkIntefaceCoreException {
-		StringBuilder resText = new StringBuilder("五羊ERP的运单新增同步，");
-		Map<String, Object> paramMap = param.getDataInMap();
-		if (paramMap == null || paramMap.isEmpty()) {
-			resText.append("请求参数不能为空！");
-			String warnMsg = resText.toString();
-			log.warn(warnMsg);
-			return SIResponseResult.error(00000,resText.toString());
+		int resCode = InterfaceErrorCode.SUCCESS;
+		StringBuilder resText = new StringBuilder("工作流用户同步，");
+		try{
+			Map<String, Object> paramMap = param.getDataInMap();
+			if (paramMap == null || paramMap.isEmpty()) {
+				resText.append("请求参数不能为空！");
+				String warnMsg = resText.toString();
+				log.warn(warnMsg);
+				return SIResponseResult.error(00000,resText.toString());
+			}
+			String jsonstr = JSON.toJSONString(paramMap);
+			JSONObject object = JSONObject.parseObject(jsonstr);
+			List<UserDto> userList = JSON.parseArray(object.getString("userDto"), UserDto.class);
+			if(null == userList){
+				resText.append("请求参数不能为空！");
+				String warnMsg = resText.toString();
+				log.warn(warnMsg);
+				return SIResponseResult.error(00000,resText.toString());
+			}
+			IdentityService identityService = processEngine.getIdentityService();
+			for(UserDto dto:userList){
+				UserEntity user = new UserEntity();
+				user.setId(dto.getId());
+				user.setFirstName(dto.getFirstName());
+				user.setLastName(dto.getLastName());
+				user.setEmail(dto.getEmail());
+				user.setPassword(dto.getPassword());
+				identityService.saveUser(user);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			resText.append("同步用户信息异常！").append(e.getMessage());
+			resCode = InterfaceErrorCode.SERVICE_ERROR;
+			log.warn(resText.toString());
 		}
-		String jsonstr = JSON.toJSONString(paramMap);
-		JSONObject object = JSONObject.parseObject(jsonstr);
-		List<UserDto> userList = JSON.parseArray(object.getString("userDto"), UserDto.class);
-		if(null == userList){
-			resText.append("请求参数不能为空！");
-			String warnMsg = resText.toString();
-			log.warn(warnMsg);
-			return SIResponseResult.error(00000,resText.toString());
+		if(resCode == InterfaceErrorCode.SUCCESS){
+			return SIResponseResult.success();
+		}else{
+			return SIResponseResult.error(resCode,resText.toString());
 		}
-		IdentityService identityService = processEngine.getIdentityService();
-		for(UserDto dto:userList){
-			UserEntity user = new UserEntity();
-			user.setId(dto.getId());
-			user.setFirstName(dto.getFirstName());
-			user.setLastName(dto.getLastName());
-			user.setEmail(dto.getEmail());
-			user.setPassword(dto.getPassword());
-			identityService.saveUser(user);
-		}
-		return SIResponseResult.success();
 	}
 }

@@ -9,14 +9,21 @@
  */
 package com.baothink.workflow.handler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baothink.framework.core.util.EncryptUtil;
+import com.baothink.framework.core.util.UUIDUtil;
 import com.baothink.interfaces.core.client.InterfaceHttpClient;
 import com.baothink.interfaces.core.client.SIClientResult;
 import com.baothink.interfaces.core.exception.BaothinkIntefaceCoreException;
+import com.baothink.workflow.dto.GroupDto;
+import com.baothink.workflow.dto.MemberDto;
+import com.baothink.workflow.dto.UserDto;
 
 /**
  * TODO<一句话功能描述><br>
@@ -29,10 +36,11 @@ import com.baothink.interfaces.core.exception.BaothinkIntefaceCoreException;
 public class TestHandler {
 
 	public static void main(String[] args) throws BaothinkIntefaceCoreException {
+		
 		// 获取授权码
-		String url1 = "http://localhost:8080/baothink-workflow/getIdCode";
-		String authCode = InterfaceHttpClient.getAuthCode(url1, "test", "123456");
-		System.out.println("授权码：" + authCode);
+//		String url1 = "http://192.168.18.119:8080/baothink-workflow/getIdCode";
+//		String authCode = InterfaceHttpClient.getAuthCode(url1, "activiti", "123456");
+//		System.out.println("授权码：" + authCode);
 		// 调用接口（通过授权码进行身份验证）
 //		String url2 = "http://localhost:8090/ecp-demo-interface/dataSynch";
 //		Map<String, Object> dataMap1 = new HashMap<String, Object>();
@@ -54,12 +62,19 @@ public class TestHandler {
 		// 调用接口（无需身份）
 		String url4 = "http://localhost:8080/baothink-workflow/dataSynch";
 		Map<String, Object> dataMap3 = new HashMap<String, Object>();
-		dataMap3.put("code", "CreateUserHandler");
-		SIClientResult result3 = InterfaceHttpClient.doPost(url4, "createUserHandler", "test", dataMap3);
+		List<MemberDto> userList = new ArrayList<>();
+		MemberDto dto = new MemberDto();
+		dto.setGroupId("employee");
+		dto.setUserId("chenjy");
+		userList.add(dto);
+		dataMap3.put("memberDto", userList);
+		SIClientResult result3 = InterfaceHttpClient.doPost(url4, "createUserHandler", "activiti", dataMap3);
 		System.out.println(result3.getHttpStatus());
 		System.out.println(result3.getCode());
 		System.out.println(result3.getMsg());
 		System.out.println(result3.getData());
 	}
+	
+	
 	
 }

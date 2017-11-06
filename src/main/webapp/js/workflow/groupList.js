@@ -1,7 +1,8 @@
 var bt = new baothink();
 $(function() {
-	bt.config.url.namespace = "workflow/user/";
-	bt.config.toolbar.search = "用户id/用户名";// 右上角搜索框的提示语句
+	bt.config.url.namespace = "workflow/group/";
+	bt.config.toolbar.search = "群组id/群组";// 右上角搜索框的提示语句
+	bt.config.pageType = '10';// 页面类型（10：单表维护；11：带树单表维护；20：多表维护；21：带树多表维护）
 	bt.config.datatables.pageLength = 10; // 每页记录数，默认10
 	bt.config.datatables.paging = true;// 是否分页，默认true
 	/*bt.config.datatables.fixedParam = {
@@ -16,21 +17,18 @@ $(function() {
 		data : 'id',
 		title : 'ID'
 	}, {
-		data : 'lastName',
-		title : '姓氏'
+		data : 'name',
+		title : '群组名'
 	}, {
-		data : 'firstName',
-		title : '名字'
-	},   {
-		data : 'email',
-		title : '电子邮箱',
+		data : 'type',
+		title : '群组类型'
 	}, {
 		title : '操作',
-		className : 'text-center',
-		render : function(data){
+		className : "text-center",
+		render : function(data, type, row, meta){
 			var html = '';
-			html += '<a class="btn btn-primary btn-xs" data-type="true" onclick="addGroup(this)">';
-			html += '关联群组';
+			html += '<a class="btn btn-primary btn-xs" data-type="true" onclick="viewUser(this)">';
+			html += '查看用户';
 			html += '</a>';
 			return html;
 		}
@@ -50,7 +48,7 @@ $(function() {
 	// 工具栏按钮配置
 	bt.config.toolbar.btn = [{
 		id : "btn_add",
-		text : "新增用户",
+		text : "新增群组",
 		icon : "fa-plus",
 		visible : true,
 		disable : false,
@@ -76,7 +74,7 @@ $(function() {
 					var formId = $form.attr("id");
 					if (formId) {
 						$form = layero.find("#" + formId);
-						$form.attr("action", basePath + bt.config.url.namespace + "createUser.htm");
+						$form.attr("action", basePath + bt.config.url.namespace + "createGroup.htm");
 						$form.submit();
 					} else {
 						throw new Error("没有找到form表单。");
@@ -89,7 +87,7 @@ $(function() {
 			});
 		}
 	}, {
-		id : "delete_user",
+		id : "delete_group",
 		text : "删除",
 		icon : "fa-remove",
 		visible : true,
@@ -103,23 +101,16 @@ $(function() {
 					title : "提示"
 				});
 				return;
-			}else if(ids.length != 1){
-				var tip = "每次只允许删除1条数据！";
-				top.layer.alert(tip, {
-					icon : 0,
-					title : "提示"
-				});
-				return;
 			}
-			top.layer.confirm("您确认要删除该条数据？", {
+			top.layer.confirm("您确认要删除" + ids.length + "条数据？", {
 				icon : 3,
 				title : "提示"
 			}, function() {
 				$.ajax({
 					type : 'POST',
-					url : basePath + bt.config.url.namespace + "deleteUser.htm",
+					url : basePath + bt.config.url.namespace + "deleteGroup.htm",
 					data : {
-						"userId" : ids[0]
+						"groupId" : ids
 					},
 					success : function(data, textStatus, jqXHR) {
 						if (data.success) {
@@ -144,6 +135,7 @@ $(function() {
 			});
 		}
 	}  ];
+	
 
 	// 初始化所有元素
 	bt.fn.init(function() {
@@ -191,20 +183,19 @@ $(function() {
 				}
 			}
 		};
-		return from.validate(v);
+		return from.validate();
 	}
 	
 
 });
 
-//关联群组
-function addGroup(data){
-	var userId = $(data).parent().parent().find("td:first").find("input[type=checkbox]").attr("value");
-	bt.fn.show("关联用户查看", [ '1000px', '600px' ], $("#view_group_div").html(), function(layero, index) {
+function viewUser(data){
+	var groupId = $(data).parent().parent().find("td:first").find("input[type=checkbox]").attr("value");
+	bt.fn.show("关联用户查看", [ '1000px', '600px' ], $("#view_user_div").html(), function(layero, index) {
 		var bk = new baothink(layero);
-		bk.config.url.namespace = "workflow/user/";
-		bk.config.url.loadListByPage = "groupList.htm";
-		bk.config.toolbar.search = "群组";// 右上角搜索框的提示语句
+		bk.config.url.namespace = "workflow/group/";
+		bk.config.url.loadListByPage = "loadSubList.htm?groupId=" + groupId + "";
+		bk.config.toolbar.search = "账号";// 右上角搜索框的提示语句
 		bk.config.datatables.scrollX = false;// 是否允许水平滚动，默认false
 		bk.config.datatables.tag = $("#dataTable1", layero);
 		bk.config.visible.toolbar = true; // 默认为true
@@ -219,72 +210,23 @@ function addGroup(data){
 			data : 'id',
 			title : 'ID'
 		}, {
-			data : 'name',
-			title : '群组名'
+			data : 'lastName',
+			title : '姓氏'
 		}, {
-			data : 'type',
-			title : '群组类型'
+			data : 'firstName',
+			title : '名字'
+		},   {
+			data : 'email',
+			title : '电子邮箱',
 		} ];
 
 		// 初始化所有元素
 		bk.fn.init(function() {
-			//默认勾选已保存的角色
-			$.ajax({
-				type : 'post',
-				url : basePath + 'workflow/user/selectedGroup.htm',
-				dataType : 'json',
-				async : false,
-				data : {
-					userId : userId
-				},
-				success : function(data) {
-					var allGroup = $("input[name = iCheck]", layero);
-					for (var i = 0; i < data.data.length; i++) {
-						$("input[name = iCheck]", layero).each(function() {
-							if(data.data[i].id == $(this).val()){
-								$(this).iCheck('check');
-							}
-						});
-					}
-				}
 		});
-	});
+
 	}, {
-		btn : [ "保存","关闭" ],
+		btn : [ "关闭" ],
 		yes : function(index, layero) {
-			var str = '';
-			$("input[name='iCheck']:checkbox", layero).each(function(){
-				if(true == $(this).is(":checked")){
-					str += $(this).val() + ",";
-				}
-			});
-			str = str.substring(0, str.length-1);
-			$.ajax({
-				type : 'post',
-				url : basePath + 'workflow/user/addGroup.htm',
-				dataType : 'json',
-				async : false,
-				data : {
-					userId : userId,
-					str : str
-				},
-				success : function(data) {
-					if(data.success){
-						top.layer.alert("关联成功！", {
-							icon : 1,
-							title : "提示"
-						});
-						top.layer.close(index);
-					}else{
-						top.layer.alert(data.errorMsg, {
-							icon : 2,
-							title : "提示"
-						});
-					}
-				}
-			});
-		},
-		btn2 : function(index, layero){
 			top.layer.close(index);
 		}
 	});

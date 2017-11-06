@@ -10,6 +10,7 @@
 	<div class="wrapper wrapper-content animated fadeInRight wrapper_fixed">
 		<div class="ibox float-e-margins">
 			<div class="ibox-content">
+				<div class="main">
 				<div id="toolbar">
 					<!-- 工具栏，显示操作按钮和模糊搜索 -->
 				</div>
@@ -20,6 +21,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 	<!-- 隐藏链接 -->
@@ -34,28 +36,21 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-xs-2 control-label required">姓氏：</label>
+				<label class="col-xs-2 control-label required">群组名：</label>
 				<div class="col-xs-9">
-					<input id="lastName" name="lastName" type="text" class="form-control"  aria-required="true">
+					<input id="name" name="name" type="text" class="form-control"  aria-required="true">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-xs-2 control-label required">名字：</label>
+				<label class="col-xs-2 control-label required">群组类型：</label>
 				<div class="col-xs-9">
-					<input id="firstName" name="firstName" type="text" class="form-control"  aria-required="true">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-xs-2 control-label">电子邮箱：</label>
-				<div class="col-xs-9">
-					<input id="email" name="email" type="text" class="form-control"  aria-required="true">
+					<input id="type" name="type" type="text" class="form-control"  aria-required="true">
 				</div>
 			</div>
 			
 		</form>
 	</div>
-	<!-- 群组列表 -->
-	<div id="view_group_div" class="ibox-content hide" class="hide">
+	<div id="view_user_div" class="ibox-content hide" class="hide">
 		<div class="wrapper wrapper-content animated fadeInRight wrapper_fixed">
 		<div class="ibox float-e-margins">
 			<div class="ibox-content">
@@ -74,7 +69,8 @@
 		</div>
 	</div>
 	</div>
+	
 	<c:import url="../common/bottom.jsp"></c:import>
-	<script type="text/javascript" src="<c:url value='/js/workflow/userList.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/workflow/groupList.js'/>"></script>
 </body>
 </html>

@@ -11,10 +11,12 @@ package com.baothink.workflow.activiti;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.activiti.engine.ManagementService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.task.NativeTaskQuery;
 import org.activiti.engine.task.Task;
-import org.activiti.engine.task.TaskQuery;
 import org.apache.commons.httpclient.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baothink.framework.base.page.PageRequest;
+import com.baothink.framework.core.util.StringUtil;
 import com.baothink.workflow.common.PageResult;
 import com.baothink.workflow.dto.TaskDto;
 
@@ -38,6 +41,8 @@ public class TaskListController {
 	
 	@Autowired
 	private TaskService taskService;
+	@Autowired
+	private ManagementService managementService;
 
 	@RequestMapping(value = "taskList.html")
 	public String toContent(){
@@ -47,8 +52,16 @@ public class TaskListController {
 	@RequestMapping(value = "loadListByPage.htm")
 	@ResponseBody
 	public PageResult getTaskPage(PageRequest pageRequest){
-		TaskQuery taskQuery = taskService.createTaskQuery().active().orderByTaskId().desc();
-		List<Task> taskList = taskQuery.listPage(pageRequest.getStart(), pageRequest.getLength());
+		Map<String, String> map = pageRequest.getSearch();
+		String value = map.get("value");
+		NativeTaskQuery taskQuery = taskService.createNativeTaskQuery();
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select * from " + managementService.getTableName(Task.class) + " t where 1=1 ");
+		if(!StringUtil.isEmpty(value)){
+			sql.append(" and (t.TASK_DEF_KEY_ like '%" + value + "%' or t.NAME_ like '%" + value + "%' or t.PROC_INST_ID_ like '%" + value + "%')");
+		}
+		List<Task> taskList = taskQuery.sql(sql.toString()).listPage(pageRequest.getStart(), pageRequest.getLength());
+		long count = taskQuery.list().size();
 		List<TaskDto> dtoList = new ArrayList<>();
 		for(Task t:taskList){
 			TaskDto dto = new TaskDto();
@@ -67,8 +80,10 @@ public class TaskListController {
 		PageResult result = new PageResult();
 		result.setDataList(dtoList);
 		result.setDraw(pageRequest.getDraw());
-		result.setRecordsFiltered(taskQuery.count());
-		result.setRecordsTotal(taskQuery.count());
+		result.setRecordsFiltered(count);
+		result.setRecordsTotal(count);
 		return result;
 	}
+	
+	
 }

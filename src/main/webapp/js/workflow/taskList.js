@@ -1,7 +1,7 @@
 $(function() {
 	var bt = new baothink();
 	bt.config.url.namespace = "/workflow/task/";
-	bt.config.toolbar.search = "模板名称/key";// 右上角搜索框的提示语句
+	bt.config.toolbar.search = "任务key/任务名称/流程实例ID";// 右上角搜索框的提示语句
 	bt.config.datatables.pageLength = 10; // 每页记录数，默认10
 	bt.config.datatables.paging = true;// 是否分页，默认true
 	/*bt.config.datatables.fixedParam = {
@@ -56,7 +56,7 @@ $(function() {
 //		targets : [ 3 ]
 //	} ];
 	// 工具栏按钮配置
-	bt.config.toolbar.btn = [ ];
+	bt.config.toolbar.btn = [];
 
 	// 初始化所有元素
 	bt.fn.init(function() {
