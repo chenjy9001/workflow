@@ -17,13 +17,13 @@ import org.activiti.engine.ManagementService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.NativeTaskQuery;
 import org.activiti.engine.task.Task;
-import org.apache.commons.httpclient.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baothink.framework.base.page.PageRequest;
+import com.baothink.framework.core.util.DateUtil;
 import com.baothink.framework.core.util.StringUtil;
 import com.baothink.workflow.common.PageResult;
 import com.baothink.workflow.dto.TaskDto;
@@ -49,14 +49,32 @@ public class TaskListController {
 		return "workflow/taskList";
 	}
 	
+	/**
+	 * 
+	 * 查询任务列表<br>
+	 * <br>
+	 * @author 陈敬尧<br>
+	 * @version 1.0,2017年11月9日 上午10:43:37
+	 * @param pageRequest
+	 * @return
+	 * @since baothink-workflow 0.0.1
+	 */
 	@RequestMapping(value = "loadListByPage.htm")
 	@ResponseBody
 	public PageResult getTaskPage(PageRequest pageRequest){
 		Map<String, String> map = pageRequest.getSearch();
 		String value = map.get("value");
+		Map<String, String> param = pageRequest.getFixedParam();
+		String processInstanceId = null;
+		if(null!=param){
+			processInstanceId = param.get("processInstanceId");
+		}
 		NativeTaskQuery taskQuery = taskService.createNativeTaskQuery();
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select * from " + managementService.getTableName(Task.class) + " t where 1=1 ");
+		if(!StringUtil.isEmpty(processInstanceId)){
+			sql.append(" and t.PROC_INST_ID_ = '" + processInstanceId + "'");
+		}
 		if(!StringUtil.isEmpty(value)){
 			sql.append(" and (t.TASK_DEF_KEY_ like '%" + value + "%' or t.NAME_ like '%" + value + "%' or t.PROC_INST_ID_ like '%" + value + "%')");
 		}
@@ -73,8 +91,9 @@ public class TaskListController {
 			dto.setDescription(t.getDescription());
 			dto.setTaskDefinitionKey(t.getTaskDefinitionKey());
 			dto.setOwner(t.getOwner());
-			dto.setCreateTime(DateUtil.formatDate(t.getCreateTime(), "yyyy-MM-dd HH:mm:ss"));
-			dto.setDueDate(t.getDueDate()!=null?DateUtil.formatDate(t.getDueDate(), "yyyy-MM-dd HH:mm:ss"):"");
+			dto.setCreateTime(DateUtil.format(t.getCreateTime(), "yyyy-MM-dd HH:mm:ss"));
+			dto.setDueDate(t.getDueDate()!=null?DateUtil.format(t.getDueDate(), "yyyy-MM-dd HH:mm:ss"):"");
+			dto.setAssignee(t.getAssignee());
 			dtoList.add(dto);
 		}
 		PageResult result = new PageResult();

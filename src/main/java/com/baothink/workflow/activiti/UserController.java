@@ -225,8 +225,8 @@ public class UserController {
 		List<Group> list = identityService.createGroupQuery().groupMember(userId).list();
 		List<GroupDto> dtoList = new ArrayList<>();
 		if(null!=list&&!list.isEmpty()){
-			GroupDto dto = new GroupDto();
 			for(Group g:list){
+				GroupDto dto = new GroupDto();
 				dto.setId(g.getId());
 				dto.setName(g.getName());
 				dto.setType(g.getType());

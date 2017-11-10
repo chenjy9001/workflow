@@ -26,7 +26,13 @@ $(function() {
 		title : '流程定义ID',
 	}, {
 		data : 'processInstanceId',
-		title : '流程实例ID',
+		title : '流程实例ID'
+	}, {
+		data : 'assignee',
+		title : '任务执行者'
+	}, {
+		data : 'owner',
+		title : '任务所属人'
 	}, {
 		data : 'priority',
 		title : '优先级'
@@ -39,9 +45,6 @@ $(function() {
 	}, {
 		data : 'description',
 		title : '任务描述'
-	}, {
-		data : 'owner',
-		title : '任务所属人'
 	}];
 //	bt.config.datatables.columnDefs = [ {
 //		render : function(data, type, row, meta) {

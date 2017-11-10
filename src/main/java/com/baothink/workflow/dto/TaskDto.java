@@ -29,6 +29,7 @@ public class TaskDto {
 	private String dueDate;
 	private String description;
 	private String owner;
+	private String assignee;
 
 	public String getId() {
 		return id;
@@ -109,5 +110,15 @@ public class TaskDto {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+
+	public String getAssignee() {
+		return assignee;
+	}
+
+	public void setAssignee(String assignee) {
+		this.assignee = assignee;
+	}
+	
+	
 
 }

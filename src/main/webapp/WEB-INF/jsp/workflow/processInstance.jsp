@@ -10,15 +10,18 @@
 	<div class="wrapper wrapper-content animated fadeInRight wrapper_fixed">
 		<div class="ibox float-e-margins">
 			<div class="ibox-content">
-				<div id="toolbar">
-					<!-- 工具栏，显示操作按钮和模糊搜索 -->
-				</div>
-				<div class="row row-lg">
-					<div class="col-xs-12">
-						<table id="dataTable" class="table table-striped table-bordered">
-						</table>
+				<div class="main" style="height: 50%">
+					<div id="toolbar">
+						<!-- 工具栏，显示操作按钮和模糊搜索 -->
+					</div>
+					<div class="row row-lg">
+						<div class="col-xs-12">
+							<table id="dataTable" class="table table-striped table-bordered">
+							</table>
+						</div>
 					</div>
 				</div>
+				<div class="sub" style="height: 50%"></div>
 			</div>
 		</div>
 	</div>

@@ -34,11 +34,10 @@
 			</bean>
 		</mvc:interceptor> -->
 		<!-- 商城，购物车，配置订单判断用户是否被冻结 -->
-	 <!-- <mvc:interceptor>
-			<mvc:mapping path="/**/*.htm" />
-			<mvc:exclude-mapping path="/*mc/**" />不拦截有mc的url
-			<bean id="userFreeInterceptor" class="com.baothink.ecp.wyip.web.site.interceptor.UserFreeInterceptor"></bean>
-		</mvc:interceptor> -->
+		<mvc:interceptor>
+			<mvc:mapping path="/rest/**" />
+			<bean id="userFreeInterceptor" class="com.baothink.workflow.interceptor.ValidationInterceptor"></bean>
+		</mvc:interceptor>
 		<mvc:interceptor>
 	    <mvc:mapping path="/**"/>
 		    <bean class="com.baothink.framework.core.interceptor.TokenHandlerInterceptor"/>

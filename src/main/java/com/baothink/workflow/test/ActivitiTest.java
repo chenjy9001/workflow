@@ -64,7 +64,7 @@ public class ActivitiTest {
 	/** 
 	 * 查询当前人的个人任务 
 	 */  
-//	@Test  
+	@Test  
 	public void findMyPersonTask() {  
 //	    String assignee = "张三";  
 		String processDefinitionId = "leavetest:1:37504";
@@ -72,10 +72,10 @@ public class ActivitiTest {
 	    List<Task> list = taskService// 与正在执行的认为管理相关的Service  
 	            .createTaskQuery()// 创建任务查询对象  
 //	            .taskAssignee(assignee)// 指定个人认为查询，指定办理人  
-	            .processInstanceId("15001")
+	            .processInstanceId("227508")
 //	            .processDefinitionId(processDefinitionId)
 	            .list();  
-	    Task tasks = taskService.createTaskQuery().processInstanceId("82501").singleResult();
+	    Task tasks = taskService.createTaskQuery().processInstanceId("227508").singleResult();
 	    System.out.println("taskId="+tasks.getId() + "_"+taskService.getVariable(tasks.getId(), "day"));
 	    if (list != null && list.size() > 0) {  
 	        for (Task task:list) {  
@@ -98,7 +98,7 @@ public class ActivitiTest {
 	/** 
 	 * 完成我的任务 
 	 */  
-	@Test  
+//	@Test  
 	public void completeMyPersonTask(){  
 	    //任务Id  
 	    String taskId="157502";  

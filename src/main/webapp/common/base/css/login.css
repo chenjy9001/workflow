@@ -6,7 +6,6 @@
     *zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
   } 
 }
-body {padding: 0;margin-top:0px;margin: 0px;background:url("../../common/base/images/login/bg.jpg") no-repeat; } 
 #loginbox {width:500px;text-align: center;  position: relative;position: absolute;top:50%;left:50%;margin-left:-250px;margin-top:-180px;}
 #loginbox form{width:100%;padding-top:20px; background-color:rgba(0,0,0,0.5); }
 #loginbox .form-actions { padding: 14px 20px 15px;margin-top:20px;}
@@ -24,4 +23,5 @@ body {padding: 0;margin-top:0px;margin: 0px;background:url("../../common/base/im
 #loginbox .control-group{ padding:10px 0; margin-bottom:0px;}
 #loginbox .bottomDiv{position: fixed;bottom:0;left:0;width:100%; }
 .form-vertical, .form-actions { border-top:1px solid #3f4954; }
-
+.adminLogin_bj{position: absolute;top:0;left:0;width:100%;height:100%;z-index:-10;}
+.login_box_bj{position:absolute;width:1200px;left:18%;z-index:-1;}

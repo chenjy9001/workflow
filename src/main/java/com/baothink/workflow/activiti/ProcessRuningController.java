@@ -86,6 +86,7 @@ public class ProcessRuningController {
 		if(!StringUtil.isEmpty(value)){
 			sql.append(" and (p.KEY_ like '%" + value +"%' or p.NAME_  like '%" + value + "%')"  );
 		}
+		sql.append(" order by PROC_INST_ID_ desc");
 		NativeProcessInstanceQuery processInstanceQuery = runtimeService.createNativeProcessInstanceQuery();
 		int count = processInstanceQuery.sql(sql.toString()).list().size();
         List<ProcessInstance> list = processInstanceQuery.sql(sql.toString()).listPage(pageRequest.getStart(), pageRequest.getLength());

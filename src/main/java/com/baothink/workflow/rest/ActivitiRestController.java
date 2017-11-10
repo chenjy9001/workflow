@@ -30,4 +30,8 @@ public class ActivitiRestController {
 	public void testPut(){
 		System.out.println("成功调用！");
 	}
+	
+	public void refectActiviti(){
+		
+	}
 }

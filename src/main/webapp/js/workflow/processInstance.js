@@ -4,6 +4,7 @@ $(function() {
 	bt.config.toolbar.search = "流程定义ID/流程定义名称";// 右上角搜索框的提示语句
 	bt.config.datatables.pageLength = 10; // 每页记录数，默认10
 	bt.config.datatables.paging = true;// 是否分页，默认true
+	bt.config.pageType = '20';
 //	bt.config.visible.searchbar = false;//关闭查询框
 	/*bt.config.datatables.fixedParam = {
 			keyword : function() {
@@ -301,7 +302,14 @@ $(function() {
 
 	});
 	
-	
+	bt.config.tab.tabs = [ {
+		id : "subTable",
+		title : "任务列表",
+		url : "workflow/task/taskList.html",
+		query : [ {
+			processInstanceId : "processInstanceId"
+		} ]
+	} ];
 	
 
 	/**

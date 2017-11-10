@@ -10,6 +10,6 @@
 	<context:component-scan base-package="org.activiti.rest">
 		<!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" /> -->
 	</context:component-scan>
-
+	<import resource="*/profile-mvc*.xml" />
 	<mvc:annotation-driven />
 </beans>

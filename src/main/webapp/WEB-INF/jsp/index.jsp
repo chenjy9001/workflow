@@ -104,7 +104,7 @@
 								</div>
 							</div></li> -->
 						<li class="dropdown"><a class="dropdown-toggle user" data-toggle="dropdown" href="#"> <c:if test='${loginPhoto!=null&&""!=loginPhoto}'>
-									<img alt="image" class="user-photo" src='<c:url value="/fileserver/loadImage/${loginPhoto}"></c:url>' />
+									<%-- <img alt="image" class="user-photo" src='<c:url value="/fileserver/loadImage/${loginPhoto}"></c:url>' /> --%>
 								</c:if> <span class="user-info"> ${loginName} <small>${loginPtName}</small>
 							</span> <i class="fa fa-caret-down"></i>
 						</a>

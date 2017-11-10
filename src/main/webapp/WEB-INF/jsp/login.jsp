@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/base/css/login.css'/>" />
 </head>
 <body>
+	<img class="adminLogin_bj" src="images/adminLogin_bj.jpg">
 	<div id="loginbox">
 		<form action="" method="post" name="loginForm" id="loginForm">
 			<div class="control-group">
@@ -55,6 +56,7 @@
 			</div>
 		</div>
 	</div>
+	<img class="login_box_bj" src="images/login_box_bj.png">
 	<c:import url="common/bottom.jsp"></c:import>
 	<script type="text/javascript" src="<c:url value='/plugins/cookie/jquery.cookie.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/plugins/RSA/Barrett.js'/>"></script>
