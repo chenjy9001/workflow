@@ -115,7 +115,7 @@ public class CreateUserHandler implements IHandle{
 		try{
 			Map<String, Object> paramMap = param.getDataInMap();
 			if (paramMap == null || paramMap.isEmpty()) {
-				resText.append("请求参数不能为空！");
+				resText.append("请求体不能为空！");
 				String warnMsg = resText.toString();
 				log.warn(warnMsg);
 				return SIResponseResult.error(00000,resText.toString());

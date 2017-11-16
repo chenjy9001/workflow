@@ -10,20 +10,19 @@
 package com.baothink.workflow.handler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.bouncycastle.math.Primes;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baothink.framework.core.util.EncryptUtil;
-import com.baothink.framework.core.util.UUIDUtil;
 import com.baothink.interfaces.core.client.InterfaceHttpClient;
 import com.baothink.interfaces.core.client.SIClientResult;
 import com.baothink.interfaces.core.exception.BaothinkIntefaceCoreException;
-import com.baothink.workflow.dto.GroupDto;
 import com.baothink.workflow.dto.MemberDto;
-import com.baothink.workflow.dto.UserDto;
 
 /**
  * TODO<一句话功能描述><br>
@@ -73,6 +72,7 @@ public class TestHandler {
 		System.out.println(result3.getCode());
 		System.out.println(result3.getMsg());
 		System.out.println(result3.getData());
+        System.out.println("distinctPrimary result is: ");
 	}
 	
 	

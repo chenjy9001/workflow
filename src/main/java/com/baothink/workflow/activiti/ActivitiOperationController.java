@@ -37,7 +37,7 @@ import org.junit.Test;
 import com.baothink.framework.core.util.StringUtil;
 
 /**
- * TODO<一句话功能描述><br>
+ * 手动驳回实现<br>
  * <br>
  * @author 陈敬尧
  * @version 1.0,2017年10月18日 下午3:11:29

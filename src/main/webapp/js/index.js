@@ -76,7 +76,7 @@ function initTwoLevelMenu(menuCode) {
 	html = html + "<li><a class='J_menuItem' href ='workflow/model/list' dataindex='1'>模板管理</a></li>";
 	html = html + "<li><a class='J_menuItem' href ='workflow/process/toContent.html' dataindex='2'>流程管理</a></li>";
 	html = html + "<li><a class='J_menuItem' href ='workflow/processing/toContent.html' dataindex='3'>流程实例管理</a></li>";
-//	html = html + "<li><a class='J_menuItem' href ='workflow/task/taskList.html' dataindex='4'>流程任务管理</a></li>";
+	html = html + "<li><a class='J_menuItem' href ='workflow/history/toContent.html' dataindex='4'>流程实例历史查询</a></li>";
 	html = html + "<li><a class='J_menuItem' href ='workflow/user/toContent.html' dataindex='5'>用户管理</a></li>";
 	html = html + "<li><a class='J_menuItem' href ='workflow/group/toContent.html' dataindex='6'>群组管理</a></li>";
 	html = html + "</ul>";
